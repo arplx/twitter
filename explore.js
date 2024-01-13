@@ -1,7 +1,8 @@
 const displayTweets = async () => {
- try {
-    const response = await axios.get('explore.json');
-    const tweets = response.data.slice(0, 5);
+  try {
+    const response = await fetch('explore.json');
+    const data = await response.json();
+    const tweets = data.slice(0, 5);
     const twitterFeed = document.getElementById('twitter-feed');
 
     tweets.forEach(tweet => {
@@ -45,9 +46,9 @@ const displayTweets = async () => {
 
       twitterFeed.appendChild(twitterPost);
     });
- } catch (error) {
+  } catch (error) {
     console.error('Error fetching tweets:', error);
- }
+  }
 };
 
 displayTweets();
